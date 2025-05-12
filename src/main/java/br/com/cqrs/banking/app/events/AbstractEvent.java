@@ -17,7 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class AbstractEvent {
+public abstract class AbstractEvent implements Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,4 +35,10 @@ public abstract class AbstractEvent {
     @JdbcTypeCode(SqlTypes.JSON)
     @Convert(converter = ObjectConverter.class)
     private Object payload;
+
+    public AbstractEvent(UUID aggregateId, EventType type, Object payload) {
+        this.aggregateId = aggregateId;
+        this.type = type;
+        this.payload = payload;
+    }
 }

@@ -9,11 +9,11 @@ import org.hibernate.type.SqlTypes;
 import java.util.List;
 import java.util.UUID;
 
-@Table(name = "clients")
+@Table(name = "customers")
 @Entity
 @Getter
 @Setter
-public class Client {
+public class Customer {
 
     @Id
     @GeneratedValue
@@ -26,7 +26,7 @@ public class Client {
 
     @OneToMany
     @JoinTable(
-            joinColumns = @JoinColumn(name = "client_id"),
+            joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "card_id")
     )
     private List<Card> cards;
