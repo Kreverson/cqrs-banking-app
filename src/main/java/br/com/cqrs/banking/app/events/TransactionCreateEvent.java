@@ -1,10 +1,11 @@
 package br.com.cqrs.banking.app.events;
 
 import br.com.cqrs.banking.app.domain.aggregate.Aggregate;
+import br.com.cqrs.banking.app.domain.model.Transaction;
 
 public class TransactionCreateEvent extends AbstractEvent {
 
-    public TransactionCreateEvent(Object payload) {
+    public TransactionCreateEvent(Transaction payload) {
         super(null, EventType.TRANSACTION_CREATE, payload);
     }
 
