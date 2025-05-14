@@ -6,4 +6,6 @@ import br.com.cqrs.banking.app.service.QueryService;
 
 public interface CustomerService
         extends QueryService<Customer>, CommandService<Customer> {
+
+    boolean existsByUsername(String username);
 }

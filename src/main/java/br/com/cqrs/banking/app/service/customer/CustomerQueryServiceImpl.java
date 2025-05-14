@@ -22,4 +22,9 @@ public class CustomerQueryServiceImpl implements CustomerQueryService {
         return repository.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
     }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return repository.existsByUsername(username);
+    }
 }
