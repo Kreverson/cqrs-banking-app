@@ -9,13 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class TransactionQueryServiceImpl implements TransactionQueryService {
 
     private final TransactionRepository repository;
-
-    public TransactionQueryServiceImpl(TransactionRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public Transaction getById(UUID id) {

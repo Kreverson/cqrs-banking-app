@@ -17,15 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
     private final CustomerMapper customerMapper;
-
-    public AuthController(AuthService authService, CustomerMapper customerMapper) {
-        this.authService = authService;
-        this.customerMapper = customerMapper;
-    }
 
     @PostMapping("/register")
     public void register(
@@ -34,6 +30,7 @@ public class AuthController {
         Customer customer = customerMapper.fromDto(dto);
         authService.register(customer);
     }
+
     @PostMapping("/login")
     public LoginResponseDto login(
         @RequestBody @Validated(OnCreate.class) final LoginRequestDto dto

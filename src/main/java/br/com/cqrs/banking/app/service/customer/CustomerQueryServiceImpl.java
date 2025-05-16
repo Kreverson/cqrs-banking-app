@@ -9,13 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerQueryServiceImpl implements CustomerQueryService {
 
     private final CustomerRepository repository;
-
-    public CustomerQueryServiceImpl(CustomerRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public Customer getById(UUID id) {

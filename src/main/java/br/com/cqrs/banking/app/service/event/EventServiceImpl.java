@@ -7,13 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class EventServiceImpl implements  EventService{
 
     private final EventRepository repository;
-
-    public EventServiceImpl(EventRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public void create(AbstractEvent event) {
