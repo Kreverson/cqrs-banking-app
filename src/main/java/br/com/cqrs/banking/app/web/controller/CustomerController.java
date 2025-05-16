@@ -1,0 +1,34 @@
+package br.com.cqrs.banking.app.web.controller;
+
+import br.com.cqrs.banking.app.domain.model.Customer;
+import br.com.cqrs.banking.app.service.customer.CustomerService;
+import br.com.cqrs.banking.app.web.dto.CustomerDto;
+import br.com.cqrs.banking.app.web.dto.mapper.AccountMapper;
+import br.com.cqrs.banking.app.web.dto.mapper.CardMapper;
+import br.com.cqrs.banking.app.web.dto.mapper.CustomerMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/v1/customers")
+@RequiredArgsConstructor
+public class CustomerController {
+
+    private final CustomerService customerService;
+    private final CustomerMapper customerMapper;
+    private final CardMapper cardMapper;
+    private final AccountMapper accountMapper;
+
+    @GetMapping("/{id}")
+    public CustomerDto getById(
+            @PathVariable final UUID id
+    ) {
+        Customer customer = customerService.getById(id);
+        return customerMapper.toDto(customer);
+    }
+}

@@ -4,4 +4,6 @@ import br.com.cqrs.banking.app.domain.model.Card;
 import br.com.cqrs.banking.app.service.QueryService;
 
 public interface CardQueryService extends QueryService<Card> {
+
+    boolean existsByNumberAndDate(String number, String date);
 }
