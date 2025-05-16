@@ -7,7 +7,6 @@ import br.com.cqrs.banking.app.web.dto.LoginRequestDto;
 import br.com.cqrs.banking.app.web.dto.LoginResponseDto;
 import br.com.cqrs.banking.app.web.dto.OnCreate;
 import br.com.cqrs.banking.app.web.dto.mapper.CustomerMapper;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
