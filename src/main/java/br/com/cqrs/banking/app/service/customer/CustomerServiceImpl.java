@@ -10,8 +10,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    private CustomerQueryService queryService;
-    private CustomerCommandService commandService;
+    private final CustomerQueryService queryService;
+    private final CustomerCommandService commandService;
 
     @Override
     public void create(Customer object) {
@@ -21,6 +21,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getById(UUID id) {
         return queryService.getById(id);
+    }
+
+    @Override
+    public Customer getByUsername(String username) {
+        return queryService.getByUsername(username);
     }
 
     @Override

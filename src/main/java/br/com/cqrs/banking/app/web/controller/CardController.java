@@ -7,7 +7,10 @@ import br.com.cqrs.banking.app.web.dto.CardDto;
 import br.com.cqrs.banking.app.web.dto.TransactionDto;
 import br.com.cqrs.banking.app.web.dto.mapper.CardMapper;
 import br.com.cqrs.banking.app.web.dto.mapper.TransactionMapper;
+import br.com.cqrs.banking.app.web.security.SecurityUser;
+import br.com.cqrs.banking.app.web.security.service.SecurityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,17 +21,19 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CardController {
 
+    private final SecurityService securityService;
     private final CardService cardService;
     private final CardMapper cardMapper;
     private final TransactionMapper transactionMapper;
 
     @PostMapping
     public void create() {
-        UUID id = UUID.randomUUID();
-        cardService.createByCustomerId(id);
+        SecurityUser user = securityService.getUserFromRequest();
+        cardService.createByCustomerId(user.getId());
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("@ssi.canAccessCard(#id)")
     public CardDto getById(
         @PathVariable final UUID id
     ) {
@@ -37,6 +42,7 @@ public class CardController {
     }
 
     @GetMapping("/{id}/transactions")
+    @PreAuthorize("@ssi.canAccessCard(#id)")
     public List<TransactionDto> getTransactionsById(
         @PathVariable final UUID id
     ) {

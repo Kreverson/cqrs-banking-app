@@ -2,16 +2,20 @@ package br.com.cqrs.banking.app.web.controller;
 
 import br.com.cqrs.banking.app.domain.model.Customer;
 import br.com.cqrs.banking.app.service.customer.CustomerService;
+import br.com.cqrs.banking.app.web.dto.AccountDto;
+import br.com.cqrs.banking.app.web.dto.CardDto;
 import br.com.cqrs.banking.app.web.dto.CustomerDto;
 import br.com.cqrs.banking.app.web.dto.mapper.AccountMapper;
 import br.com.cqrs.banking.app.web.dto.mapper.CardMapper;
 import br.com.cqrs.banking.app.web.dto.mapper.CustomerMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -25,10 +29,29 @@ public class CustomerController {
     private final AccountMapper accountMapper;
 
     @GetMapping("/{id}")
+    @PreAuthorize("@ssi.canAccessCustomer(#id)")
     public CustomerDto getById(
             @PathVariable final UUID id
     ) {
         Customer customer = customerService.getById(id);
         return customerMapper.toDto(customer);
+    }
+
+    @GetMapping("/{id}/cards")
+    @PreAuthorize("@ssi.canAccessCustomer(#id)")
+    public List<CardDto> getCardsById(
+            @PathVariable final UUID id
+    ) {
+        Customer customer = customerService.getById(id);
+        return cardMapper.toDto(customer.getCards());
+    }
+
+    @GetMapping("/{id}/account")
+    @PreAuthorize("@ssi.canAccessCustomer(#id)")
+    public AccountDto getAccountById(
+            @PathVariable final UUID id
+    ) {
+        Customer customer = customerService.getById(id);
+        return accountMapper.toDto(customer.getAccount());
     }
 }

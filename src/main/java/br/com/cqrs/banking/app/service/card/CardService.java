@@ -15,4 +15,10 @@ public interface CardService
             String number,
             String date
     );
+
+    Card getByNumberAndDateAndCvv (
+            String number,
+            String date,
+            String cvv
+    );
 }

@@ -21,6 +21,12 @@ public class CustomerQueryServiceImpl implements CustomerQueryService {
     }
 
     @Override
+    public Customer getByUsername(String username) {
+        return repository.findByUsername(username)
+                .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
     public boolean existsByUsername(String username) {
         return repository.existsByUsername(username);
     }
