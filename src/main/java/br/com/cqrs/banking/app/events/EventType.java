@@ -1,7 +1,7 @@
 package br.com.cqrs.banking.app.events;
 
 public enum EventType {
-    CLIENT_CREATE,
+    CUSTOMER_CREATE,
     CARD_CREATE,
     TRANSACTION_CREATE,
     ACCOUNT_CREATE
