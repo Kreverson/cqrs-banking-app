@@ -1,4 +1,4 @@
-package br.com.cqrs.core.service.customer;
+package br.com.cqrs.common.service.customer;
 
 import br.com.cqrs.common.domain.exception.ResourceNotFoundException;
 import br.com.cqrs.common.domain.model.Customer;

@@ -1,4 +1,4 @@
-package br.com.cqrs.core.service;
+package br.com.cqrs.common.service;
 
 import java.util.UUID;
 

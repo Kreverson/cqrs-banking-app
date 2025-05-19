@@ -1,6 +1,7 @@
 package br.com.cqrs.core.service.customer;
 
 import br.com.cqrs.common.domain.model.Customer;
+import br.com.cqrs.common.service.customer.CustomerQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

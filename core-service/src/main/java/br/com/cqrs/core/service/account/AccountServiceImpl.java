@@ -1,6 +1,7 @@
 package br.com.cqrs.core.service.account;
 
 import br.com.cqrs.common.domain.model.Account;
+import br.com.cqrs.common.service.account.AccountQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

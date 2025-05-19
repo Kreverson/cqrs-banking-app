@@ -2,6 +2,7 @@ package br.com.cqrs.core.service.card;
 
 import br.com.cqrs.common.domain.model.Card;
 import br.com.cqrs.common.domain.model.Customer;
+import br.com.cqrs.common.service.card.CardQueryService;
 import br.com.cqrs.core.service.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

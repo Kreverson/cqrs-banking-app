@@ -1,6 +1,7 @@
 package br.com.cqrs.core.service.transaction;
 
 import br.com.cqrs.common.domain.model.Transaction;
+import br.com.cqrs.common.service.transaction.TransactionQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

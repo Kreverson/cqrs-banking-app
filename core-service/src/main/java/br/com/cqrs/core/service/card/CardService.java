@@ -2,7 +2,7 @@ package br.com.cqrs.core.service.card;
 
 import br.com.cqrs.common.domain.model.Card;
 import br.com.cqrs.core.service.CommandService;
-import br.com.cqrs.core.service.QueryService;
+import br.com.cqrs.common.service.QueryService;
 
 import java.util.UUID;
 

@@ -1,7 +1,7 @@
-package br.com.cqrs.core.service.card;
+package br.com.cqrs.common.service.card;
 
 import br.com.cqrs.common.domain.model.Card;
-import br.com.cqrs.core.service.QueryService;
+import br.com.cqrs.common.service.QueryService;
 
 public interface CardQueryService extends QueryService<Card> {
 
