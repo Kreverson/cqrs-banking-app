@@ -1,6 +1,7 @@
 package br.com.cqrs.core.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.Getter;
@@ -24,27 +25,36 @@ public class CustomerDto {
     private UUID id;
 
     @NotNull(
-            message = "Name must be not null"
+            message = "Name must be not null",
+            groups = {OnCreate.class, OnUpdate.class}
     )
     @Length(
             min = 1,
             max = 255,
-            message = "Name length must be in {min} and {max}"
+            message = "Name length must be in {min} and {max}",
+            groups = {OnCreate.class, OnUpdate.class}
     )
     private String name;
 
+    @Email(
+            message = "Username must be a valid email",
+            groups = {OnCreate.class, OnUpdate.class}
+    )
     @NotNull(
-            message = "Username must be not null"
+            message = "Username must be not null",
+            groups = {OnCreate.class, OnUpdate.class}
     )
     @Length(
             min = 1,
             max = 255,
-            message = "Username length must be in {min} and {max}"
+            message = "Username length must be in {min} and {max}",
+            groups = {OnCreate.class, OnUpdate.class}
     )
     private String username;
 
     @NotNull(
-            message = "Password must be not null"
+            message = "Password must be not null",
+            groups = {OnCreate.class, OnUpdate.class}
     )
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;

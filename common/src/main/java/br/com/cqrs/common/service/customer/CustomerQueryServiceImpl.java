@@ -15,19 +15,33 @@ public class CustomerQueryServiceImpl implements CustomerQueryService {
     private final CustomerRepository repository;
 
     @Override
-    public Customer getById(UUID id) {
+    public Customer getById(
+            final UUID id
+    ) {
         return repository.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
-    public Customer getByUsername(String username) {
+    public Customer getByUsername(
+            final String username
+    ) {
         return repository.findByUsername(username)
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
-    public boolean existsByUsername(String username) {
+    public boolean existsByUsername(
+            final String username
+    ) {
         return repository.existsByUsername(username);
+    }
+
+    @Override
+    public Customer getByAccount(
+            final UUID accountId
+    ) {
+        return repository.findByAccountId(accountId)
+                .orElseThrow(ResourceNotFoundException::new);
     }
 }

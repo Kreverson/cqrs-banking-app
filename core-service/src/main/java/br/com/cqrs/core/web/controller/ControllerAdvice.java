@@ -5,6 +5,7 @@ import br.com.cqrs.common.domain.exception.ResourceNotFoundException;
 import br.com.cqrs.core.web.dto.MessageDto;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -67,5 +68,20 @@ public class ControllerAdvice {
     ) {
         e.printStackTrace();
         return new MessageDto("Server error");
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public MessageDto accessDenied(
+            final AccessDeniedException e
+    ) {
+        return new MessageDto("Access denied.");
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public MessageDto badCredentials(
+            final RuntimeException e
+    ) {
+        return new MessageDto("Authentication failed.");
     }
 }

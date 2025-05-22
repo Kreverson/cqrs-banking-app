@@ -25,4 +25,6 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
             @Param("customerId") String customerId,
             @Param("cardId") String cardId
     );
+
+    Optional<Customer> findByAccountId(UUID accountId);
 }

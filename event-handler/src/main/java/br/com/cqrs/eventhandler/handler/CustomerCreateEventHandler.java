@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
-@Component("CLIENT_CREATE")
+@Component("CUSTOMER_CREATE")
 @RequiredArgsConstructor
 public class CustomerCreateEventHandler implements EventHandler {
 

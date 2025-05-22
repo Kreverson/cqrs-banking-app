@@ -10,6 +10,7 @@ import br.com.cqrs.core.web.security.SecurityUser;
 import br.com.cqrs.core.web.security.service.SecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/cards")
 @RequiredArgsConstructor
+@Validated
 public class CardController {
 
     private final SecurityService securityService;
