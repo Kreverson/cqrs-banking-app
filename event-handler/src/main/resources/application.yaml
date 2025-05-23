@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: banking.app.event-handler
+  http:
+    converters:
+      preferred-json-mapper: gson
   config:
     import: optional:file:.env[.properties]
   datasource:
