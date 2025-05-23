@@ -1,26 +1,33 @@
 package br.com.cqrs.eventhandler.config;
 
-import com.fasterxml.jackson.core.JacksonException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
+import java.lang.reflect.Type;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.TimeZone;
 
 @Component
 public class LocalDateTimeDeserializer
-        extends  JsonDeserializer<LocalDateTime> {
+        implements JsonDeserializer<LocalDateTime> {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
     public LocalDateTime deserialize(
-            JsonParser jsonParser,
-            DeserializationContext deserializationContext
-    ) throws IOException, JacksonException {
-        return LocalDateTime.parse(jsonParser.getText(), formatter);
+            final JsonElement json,
+            final Type typeOfT,
+            final JsonDeserializationContext context
+    ) {
+        return LocalDateTime.ofInstant(
+                Instant.ofEpochMilli(
+                        json.getAsLong() / 1000
+                ),
+                TimeZone.getDefault()
+                        .toZoneId()
+        );
     }
 }
