@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jdk-alpine AS build
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY event-handler/pom.xml event-handler/
@@ -9,9 +9,9 @@ COPY event-handler/src event-handler/src
 COPY common/src common/src
 COPY core-service/src core-service/src
 
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:21-jre-alpine-3.21
+FROM eclipse-temurin:21-jdk
 COPY --from=build /app/core-service/target/*.jar application.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "application.jar"]
