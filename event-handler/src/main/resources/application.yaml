@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  application:
+    name: banking.app.event-handler
   config:
     import: optional:file:.env[.properties]
   datasource:

@@ -1,6 +1,9 @@
+server:
+  port: 8080
+
 spring:
   application:
-    name: banking.app
+    name: banking.app.core.service
   config:
     import: optional:file:.env[.properties]
   datasource:

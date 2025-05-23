@@ -1,0 +1,17 @@
+FROM eclipse-temurin:21-jdk-alpine AS build
+WORKDIR /app
+COPY pom.xml .
+COPY event-handler/pom.xml event-handler/
+COPY common/pom.xml common/
+COPY core-service/pom.xml core-service/
+
+COPY event-handler/src event-handler/src
+COPY common/src common/src
+COPY core-service/src core-service/src
+
+RUN ./mvnw clean package -DskipTests
+
+FROM eclipse-temurin:21-jre-alpine-3.21
+COPY --from=build /app/core-service/target/*.jar application.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "application.jar"]
